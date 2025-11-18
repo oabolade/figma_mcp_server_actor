@@ -1,0 +1,54 @@
+{
+    "title": "Input schema of the Figma MCP Server",
+    "type": "object",
+    "schemaVersion": 1,
+    "properties": {
+        "figmaAccessToken": {
+            "title": "Figma Personal Access Token",
+            "type": "string",
+            "description": "Personal Access Token for Figma API authentication. Generate at https://www.figma.com/developers/api#access-tokens",
+            "editor": "textfield",
+            "nullable": true
+        },
+        "port": {
+            "title": "HTTP Server Port",
+            "type": "integer",
+            "description": "Port number for the HTTP server to listen on",
+            "default": 8080,
+            "minimum": 1,
+            "maximum": 65535
+        },
+        "oauthClientId": {
+            "title": "OAuth 2.0 Client ID",
+            "type": "string",
+            "description": "OAuth 2.0 client ID for multi-user authentication (optional, for future use)",
+            "editor": "textfield",
+            "nullable": true
+        },
+        "oauthClientSecret": {
+            "title": "OAuth 2.0 Client Secret",
+            "type": "string",
+            "description": "OAuth 2.0 client secret for multi-user authentication (optional, for future use)",
+            "editor": "textfield",
+            "nullable": true,
+            "isSecret": true
+        },
+        "maxConcurrentRequests": {
+            "title": "Max Concurrent Requests",
+            "type": "integer",
+            "description": "Maximum number of concurrent requests the server can handle",
+            "default": 10,
+            "minimum": 1,
+            "maximum": 100
+        },
+        "enableCaching": {
+            "title": "Enable Caching",
+            "type": "boolean",
+            "description": "Enable response caching for Figma API requests",
+            "default": true
+        }
+    },
+    "required": []
+}
+
+
