@@ -1,4 +1,5 @@
 import prettierConfig from 'eslint-config-prettier';
+
 import apifyConfig from '@apify/eslint-config';
 
 const config = [
