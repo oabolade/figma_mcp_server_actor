@@ -41,21 +41,21 @@ AGENTS.md # AI agent instructions (this file)
 
 ```json
 {
-    "actorSpecification": 1,
-    "name": "<ACTOR-NAME-FROM-USER>",
-    "title": "<ACTOR-NAME-FROM-USER>",
-    "description": "<ACTOR-NAME-FROM-USER>",
-    "version": "0.0",
-    "meta": {
-        "templateId": "ai-generated-actor",
-        "generatedBy": "<MODEL>"
-    },
-    "input": "./input_schema.json",
-    "output": "./output_schema.json",
-    "storages": {
-        "dataset": "./dataset_schema.json"
-    },
-    "dockerfile": "../Dockerfile"
+  "actorSpecification": 1,
+  "name": "<ACTOR-NAME-FROM-USER>",
+  "title": "<ACTOR-NAME-FROM-USER>",
+  "description": "<ACTOR-NAME-FROM-USER>",
+  "version": "0.0",
+  "meta": {
+    "templateId": "ai-generated-actor",
+    "generatedBy": "<MODEL>"
+  },
+  "input": "./input_schema.json",
+  "output": "./output_schema.json",
+  "storages": {
+    "dataset": "./dataset_schema.json"
+  },
+  "dockerfile": "../Dockerfile"
 }
 ```
 
@@ -63,28 +63,28 @@ AGENTS.md # AI agent instructions (this file)
 
 ```json
 {
-    "title": "Input schema of the <ACTOR-NAME-FROM-USER>",
-    "type": "object",
-    "schemaVersion": 1,
-    "properties": {
-        "startUrls": {
-            "title": "Start URLs",
-            "type": "array",
-            "description": "URLs to start with.",
-            "editor": "requestListSources",
-            "prefill": [
-                {
-                    "url": "https://crawlee.dev"
-                }
-            ]
-        },
-        "maxRequestsPerCrawl": {
-            "title": "Max Requests per Crawl",
-            "type": "integer",
-            "description": "Maximum number of requests that can be made by this crawler.",
-            "default": 100
+  "title": "Input schema of the <ACTOR-NAME-FROM-USER>",
+  "type": "object",
+  "schemaVersion": 1,
+  "properties": {
+    "startUrls": {
+      "title": "Start URLs",
+      "type": "array",
+      "description": "URLs to start with.",
+      "editor": "requestListSources",
+      "prefill": [
+        {
+          "url": "https://crawlee.dev"
         }
+      ]
+    },
+    "maxRequestsPerCrawl": {
+      "title": "Max Requests per Crawl",
+      "type": "integer",
+      "description": "Maximum number of requests that can be made by this crawler.",
+      "default": 100
     }
+  }
 }
 ```
 
@@ -92,15 +92,15 @@ AGENTS.md # AI agent instructions (this file)
 
 ```json
 {
-    "actorOutputSchemaVersion": 1,
-    "title": "Output schema of the <ACTOR-NAME-FROM-USER>",
-    "properties": {
-        "overview": {
-            "type": "string",
-            "title": "Overview",
-            "template": "{{links.apiDefaultDatasetUrl}}/items?view=overview"
-        }
+  "actorOutputSchemaVersion": 1,
+  "title": "Output schema of the <ACTOR-NAME-FROM-USER>",
+  "properties": {
+    "overview": {
+      "type": "string",
+      "title": "Overview",
+      "template": "{{links.apiDefaultDatasetUrl}}/items?view=overview"
     }
+  }
 }
 ```
 
@@ -108,29 +108,29 @@ AGENTS.md # AI agent instructions (this file)
 
 ```json
 {
-    "actorSpecification": 1,
-    "fields": {},
-    "views": {
-        "overview": {
-            "title": "Overview",
-            "transformation": {
-                "fields": ["title", "url"]
-            },
-            "display": {
-                "component": "table",
-                "properties": {
-                    "title": {
-                        "label": "Title",
-                        "format": "text"
-                    },
-                    "url": {
-                        "label": "URL",
-                        "format": "link"
-                    }
-                }
-            }
+  "actorSpecification": 1,
+  "fields": {},
+  "views": {
+    "overview": {
+      "title": "Overview",
+      "transformation": {
+        "fields": ["title", "url"]
+      },
+      "display": {
+        "component": "table",
+        "properties": {
+          "title": {
+            "label": "Title",
+            "format": "text"
+          },
+          "url": {
+            "label": "URL",
+            "format": "link"
+          }
         }
+      }
     }
+  }
 }
 ```
 
@@ -140,33 +140,34 @@ AGENTS.md # AI agent instructions (this file)
 
 ```javascript
 // Apify SDK - toolkit for building Apify Actors (Read more at https://docs.apify.com/sdk/js/)
-import { Actor } from 'apify';
+import { Actor } from "apify";
 // Crawlee - web scraping and browser automation library (Read more at https://crawlee.dev)
-import { CheerioCrawler, Dataset } from 'crawlee';
+import { CheerioCrawler, Dataset } from "crawlee";
 
 // The init() call configures the Actor for its environment. It's recommended to start every Actor with an init()
 await Actor.init();
 
 // Structure of input is defined in input_schema.json
-const { startUrls = ['https://apify.com'], maxRequestsPerCrawl = 100 } = (await Actor.getInput()) ?? {};
+const { startUrls = ["https://apify.com"], maxRequestsPerCrawl = 100 } =
+  (await Actor.getInput()) ?? {};
 
 // Proxy configuration to rotate IP addresses and prevent blocking (https://docs.apify.com/platform/proxy)
 const proxyConfiguration = await Actor.createProxyConfiguration();
 
 const crawler = new CheerioCrawler({
-    proxyConfiguration,
-    maxRequestsPerCrawl,
-    async requestHandler({ enqueueLinks, request, $, log }) {
-        log.info('enqueueing new URLs');
-        await enqueueLinks();
+  proxyConfiguration,
+  maxRequestsPerCrawl,
+  async requestHandler({ enqueueLinks, request, $, log }) {
+    log.info("enqueueing new URLs");
+    await enqueueLinks();
 
-        // Extract title from the page.
-        const title = $('title').text();
-        log.info(`${title}`, { url: request.loadedUrl });
+    // Extract title from the page.
+    const title = $("title").text();
+    log.info(`${title}`, { url: request.loadedUrl });
 
-        // Save url and title to Dataset - a table-like storage.
-        await Dataset.pushData({ url: request.loadedUrl, title });
-    },
+    // Save url and title to Dataset - a table-like storage.
+    await Dataset.pushData({ url: request.loadedUrl, title });
+  },
 });
 
 await crawler.run(startUrls);
@@ -208,33 +209,33 @@ CMD npm start --silent
 
 ```json
 {
-    "name": "<ACTOR-NAME-FROM-USER>",
-    "version": "0.0.1",
-    "type": "module",
-    "description": "<ACTOR-NAME-FROM-USER>",
-    "engines": {
-        "node": ">=20.0.0"
-    },
-    "dependencies": {
-        "apify": "^3.4.2",
-        "crawlee": "^3.13.8"
-    },
-    "devDependencies": {
-        "@apify/eslint-config": "^1.0.0",
-        "eslint": "^9.29.0",
-        "eslint-config-prettier": "^10.1.5",
-        "prettier": "^3.5.3"
-    },
-    "scripts": {
-        "start": "node src/main.js",
-        "format": "prettier --write .",
-        "format:check": "prettier --check .",
-        "lint": "eslint",
-        "lint:fix": "eslint --fix",
-        "test": "echo 'Error: oops, the Actor has no tests yet, sad!' && exit 1"
-    },
-    "author": "It's not you it's me",
-    "license": "ISC"
+  "name": "<ACTOR-NAME-FROM-USER>",
+  "version": "0.0.1",
+  "type": "module",
+  "description": "<ACTOR-NAME-FROM-USER>",
+  "engines": {
+    "node": ">=20.0.0"
+  },
+  "dependencies": {
+    "apify": "^3.4.2",
+    "crawlee": "^3.13.8"
+  },
+  "devDependencies": {
+    "@apify/eslint-config": "^1.0.0",
+    "eslint": "^9.29.0",
+    "eslint-config-prettier": "^10.1.5",
+    "prettier": "^3.5.3"
+  },
+  "scripts": {
+    "start": "node src/main.js",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
+    "lint": "eslint",
+    "lint:fix": "eslint --fix",
+    "test": "echo 'Error: oops, the Actor has no tests yet, sad!' && exit 1"
+  },
+  "author": "It's not you it's me",
+  "license": "ISC"
 }
 ```
 
@@ -324,13 +325,13 @@ The input schema defines the input parameters for an Actor. It's a JSON object c
 
 ```json
 {
-    "title": "<INPUT-SCHEMA-TITLE>",
-    "type": "object",
-    "schemaVersion": 1,
-    "properties": {
-        /* define input fields here */
-    },
-    "required": []
+  "title": "<INPUT-SCHEMA-TITLE>",
+  "type": "object",
+  "schemaVersion": 1,
+  "properties": {
+    /* define input fields here */
+  },
+  "required": []
 }
 ```
 
@@ -342,11 +343,11 @@ The Actor output schema builds upon the schemas for the dataset and key-value st
 
 ```json
 {
-    "actorOutputSchemaVersion": 1,
-    "title": "<OUTPUT-SCHEMA-TITLE>",
-    "properties": {
-        /* define your outputs here */
-    }
+  "actorOutputSchemaVersion": 1,
+  "title": "<OUTPUT-SCHEMA-TITLE>",
+  "properties": {
+    /* define your outputs here */
+  }
 }
 ```
 
@@ -371,31 +372,31 @@ The dataset schema defines how your Actor's output data is structured, transform
 
 ```json
 {
-    "actorSpecification": 1,
-    "fields": {},
-    "views": {
-        "<VIEW_NAME>": {
-            "title": "string (required)",
-            "description": "string (optional)",
-            "transformation": {
-                "fields": ["string (required)"],
-                "unwind": ["string (optional)"],
-                "flatten": ["string (optional)"],
-                "omit": ["string (optional)"],
-                "limit": "integer (optional)",
-                "desc": "boolean (optional)"
-            },
-            "display": {
-                "component": "table (required)",
-                "properties": {
-                    "<FIELD_NAME>": {
-                        "label": "string (optional)",
-                        "format": "text|number|date|link|boolean|image|array|object (optional)"
-                    }
-                }
-            }
+  "actorSpecification": 1,
+  "fields": {},
+  "views": {
+    "<VIEW_NAME>": {
+      "title": "string (required)",
+      "description": "string (optional)",
+      "transformation": {
+        "fields": ["string (required)"],
+        "unwind": ["string (optional)"],
+        "flatten": ["string (optional)"],
+        "omit": ["string (optional)"],
+        "limit": "integer (optional)",
+        "desc": "boolean (optional)"
+      },
+      "display": {
+        "component": "table (required)",
+        "properties": {
+          "<FIELD_NAME>": {
+            "label": "string (optional)",
+            "format": "text|number|date|link|boolean|image|array|object (optional)"
+          }
         }
+      }
     }
+  }
 }
 ```
 
@@ -439,19 +440,19 @@ The key-value store schema organizes keys into logical groups called collections
 
 ```json
 {
-    "actorKeyValueStoreSchemaVersion": 1,
-    "title": "string (required)",
-    "description": "string (optional)",
-    "collections": {
-        "<COLLECTION_NAME>": {
-            "title": "string (required)",
-            "description": "string (optional)",
-            "key": "string (conditional - use key OR keyPrefix)",
-            "keyPrefix": "string (conditional - use key OR keyPrefix)",
-            "contentTypes": ["string (optional)"],
-            "jsonSchema": "object (optional)"
-        }
+  "actorKeyValueStoreSchemaVersion": 1,
+  "title": "string (required)",
+  "description": "string (optional)",
+  "collections": {
+    "<COLLECTION_NAME>": {
+      "title": "string (required)",
+      "description": "string (optional)",
+      "key": "string (conditional - use key OR keyPrefix)",
+      "keyPrefix": "string (conditional - use key OR keyPrefix)",
+      "contentTypes": ["string (optional)"],
+      "jsonSchema": "object (optional)"
     }
+  }
 }
 ```
 

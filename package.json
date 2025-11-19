@@ -1,32 +1,30 @@
 {
-    "name": "figma-mcp-server",
-    "version": "0.0.1",
-    "type": "module",
-    "description": "Model Context Protocol server enabling AI assistants to interact with Figma designs and projects",
-    "engines": {
-        "node": ">=20.0.0"
-    },
-    "dependencies": {
-        "apify": "^3.4.2",
-        "express": "^4.18.2",
-        "node-fetch": "^3.3.2"
-    },
-    "devDependencies": {
-        "@apify/eslint-config": "^1.0.0",
-        "eslint": "^9.29.0",
-        "eslint-config-prettier": "^10.1.5",
-        "prettier": "^3.5.3"
-    },
-    "scripts": {
-        "start": "node src/main.js",
-        "format": "prettier --write .",
-        "format:check": "prettier --check .",
-        "lint": "eslint",
-        "lint:fix": "eslint --fix",
-        "test": "echo 'Error: oops, the Actor has no tests yet, sad!' && exit 1"
-    },
-    "author": "It's not you it's me",
-    "license": "ISC"
+  "name": "figma-mcp-server",
+  "version": "0.0.1",
+  "type": "module",
+  "description": "Model Context Protocol server enabling AI assistants to interact with Figma designs and projects",
+  "engines": {
+    "node": ">=20.0.0"
+  },
+  "dependencies": {
+    "apify": "^3.4.2",
+    "express": "^4.18.2",
+    "node-fetch": "^3.3.2"
+  },
+  "devDependencies": {
+    "@apify/eslint-config": "^1.0.0",
+    "eslint": "^9.29.0",
+    "eslint-config-prettier": "^10.1.5",
+    "prettier": "^3.5.3"
+  },
+  "scripts": {
+    "start": "node src/main.js",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
+    "lint": "eslint",
+    "lint:fix": "eslint --fix",
+    "test": "echo 'Error: oops, the Actor has no tests yet, sad!' && exit 1"
+  },
+  "author": "It's not you it's me",
+  "license": "ISC"
 }
-
-

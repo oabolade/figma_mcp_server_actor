@@ -1,19 +1,17 @@
 {
-    "actorSpecification": 1,
-    "name": "figma-mcp-server",
-    "title": "Figma MCP Server",
-    "description": "Model Context Protocol server enabling AI assistants to interact with Figma designs and projects using natural language commands",
-    "version": "0.0",
-    "meta": {
-        "templateId": "ai-generated-actor",
-        "generatedBy": "composer"
-    },
-    "input": "./input_schema.json",
-    "output": "./output_schema.json",
-    "storages": {
-        "dataset": "./dataset_schema.json"
-    },
-    "dockerfile": "../Dockerfile"
+  "actorSpecification": 1,
+  "name": "figma-mcp-server",
+  "title": "Figma MCP Server",
+  "description": "Model Context Protocol server enabling AI assistants to interact with Figma designs and projects using natural language commands",
+  "version": "0.0",
+  "meta": {
+    "templateId": "ai-generated-actor",
+    "generatedBy": "composer"
+  },
+  "input": "./input_schema.json",
+  "output": "./output_schema.json",
+  "storages": {
+    "dataset": "./dataset_schema.json"
+  },
+  "dockerfile": "../Dockerfile"
 }
-
-

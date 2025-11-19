@@ -1,61 +1,59 @@
 {
-    "actorSpecification": 1,
-    "fields": {
-        "type": "object",
-        "properties": {
-            "type": {
-                "type": "string",
-                "description": "Type of log entry (error, info, warning, request, response)"
-            },
-            "timestamp": {
-                "type": "string",
-                "format": "date-time",
-                "description": "Timestamp of the log entry"
-            },
-            "message": {
-                "type": "string",
-                "description": "Log message or error description"
-            },
-            "method": {
-                "type": "string",
-                "description": "MCP method name (for requests/responses)"
-            },
-            "requestId": {
-                "type": "string",
-                "description": "JSON-RPC request ID"
-            }
-        }
-    },
-    "views": {
-        "overview": {
-            "title": "Overview",
-            "transformation": {
-                "fields": ["timestamp", "type", "message", "method"],
-                "desc": true
-            },
-            "display": {
-                "component": "table",
-                "properties": {
-                    "timestamp": {
-                        "label": "Timestamp",
-                        "format": "date"
-                    },
-                    "type": {
-                        "label": "Type",
-                        "format": "text"
-                    },
-                    "message": {
-                        "label": "Message",
-                        "format": "text"
-                    },
-                    "method": {
-                        "label": "Method",
-                        "format": "text"
-                    }
-                }
-            }
-        }
+  "actorSpecification": 1,
+  "fields": {
+    "type": "object",
+    "properties": {
+      "type": {
+        "type": "string",
+        "description": "Type of log entry (error, info, warning, request, response)"
+      },
+      "timestamp": {
+        "type": "string",
+        "format": "date-time",
+        "description": "Timestamp of the log entry"
+      },
+      "message": {
+        "type": "string",
+        "description": "Log message or error description"
+      },
+      "method": {
+        "type": "string",
+        "description": "MCP method name (for requests/responses)"
+      },
+      "requestId": {
+        "type": "string",
+        "description": "JSON-RPC request ID"
+      }
     }
+  },
+  "views": {
+    "overview": {
+      "title": "Overview",
+      "transformation": {
+        "fields": ["timestamp", "type", "message", "method"],
+        "desc": true
+      },
+      "display": {
+        "component": "table",
+        "properties": {
+          "timestamp": {
+            "label": "Timestamp",
+            "format": "date"
+          },
+          "type": {
+            "label": "Type",
+            "format": "text"
+          },
+          "message": {
+            "label": "Message",
+            "format": "text"
+          },
+          "method": {
+            "label": "Method",
+            "format": "text"
+          }
+        }
+      }
+    }
+  }
 }
-
-

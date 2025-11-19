@@ -84,13 +84,13 @@ The input schema defines the input parameters for an Actor. It's a JSON object c
 
 ```json
 {
-    "title": "<INPUT-SCHEMA-TITLE>",
-    "type": "object",
-    "schemaVersion": 1,
-    "properties": {
-        /* define input fields here */
-    },
-    "required": []
+  "title": "<INPUT-SCHEMA-TITLE>",
+  "type": "object",
+  "schemaVersion": 1,
+  "properties": {
+    /* define input fields here */
+  },
+  "required": []
 }
 ```
 
@@ -102,11 +102,11 @@ The Actor output schema builds upon the schemas for the dataset and key-value st
 
 ```json
 {
-    "actorOutputSchemaVersion": 1,
-    "title": "<OUTPUT-SCHEMA-TITLE>",
-    "properties": {
-        /* define your outputs here */
-    }
+  "actorOutputSchemaVersion": 1,
+  "title": "<OUTPUT-SCHEMA-TITLE>",
+  "properties": {
+    /* define your outputs here */
+  }
 }
 ```
 
@@ -131,31 +131,31 @@ The dataset schema defines how your Actor's output data is structured, transform
 
 ```json
 {
-    "actorSpecification": 1,
-    "fields": {},
-    "views": {
-        "<VIEW_NAME>": {
-            "title": "string (required)",
-            "description": "string (optional)",
-            "transformation": {
-                "fields": ["string (required)"],
-                "unwind": ["string (optional)"],
-                "flatten": ["string (optional)"],
-                "omit": ["string (optional)"],
-                "limit": "integer (optional)",
-                "desc": "boolean (optional)"
-            },
-            "display": {
-                "component": "table (required)",
-                "properties": {
-                    "<FIELD_NAME>": {
-                        "label": "string (optional)",
-                        "format": "text|number|date|link|boolean|image|array|object (optional)"
-                    }
-                }
-            }
+  "actorSpecification": 1,
+  "fields": {},
+  "views": {
+    "<VIEW_NAME>": {
+      "title": "string (required)",
+      "description": "string (optional)",
+      "transformation": {
+        "fields": ["string (required)"],
+        "unwind": ["string (optional)"],
+        "flatten": ["string (optional)"],
+        "omit": ["string (optional)"],
+        "limit": "integer (optional)",
+        "desc": "boolean (optional)"
+      },
+      "display": {
+        "component": "table (required)",
+        "properties": {
+          "<FIELD_NAME>": {
+            "label": "string (optional)",
+            "format": "text|number|date|link|boolean|image|array|object (optional)"
+          }
         }
+      }
     }
+  }
 }
 ```
 
@@ -199,19 +199,19 @@ The key-value store schema organizes keys into logical groups called collections
 
 ```json
 {
-    "actorKeyValueStoreSchemaVersion": 1,
-    "title": "string (required)",
-    "description": "string (optional)",
-    "collections": {
-        "<COLLECTION_NAME>": {
-            "title": "string (required)",
-            "description": "string (optional)",
-            "key": "string (conditional - use key OR keyPrefix)",
-            "keyPrefix": "string (conditional - use key OR keyPrefix)",
-            "contentTypes": ["string (optional)"],
-            "jsonSchema": "object (optional)"
-        }
+  "actorKeyValueStoreSchemaVersion": 1,
+  "title": "string (required)",
+  "description": "string (optional)",
+  "collections": {
+    "<COLLECTION_NAME>": {
+      "title": "string (required)",
+      "description": "string (optional)",
+      "key": "string (conditional - use key OR keyPrefix)",
+      "keyPrefix": "string (conditional - use key OR keyPrefix)",
+      "contentTypes": ["string (optional)"],
+      "jsonSchema": "object (optional)"
     }
+  }
 }
 ```
 
@@ -248,5 +248,3 @@ Otherwise, reference: `@https://mcp.apify.com/`
 - [docs.apify.com/llms-full.txt](https://docs.apify.com/llms-full.txt) - Complete docs
 - [crawlee.dev](https://crawlee.dev) - Crawlee documentation
 - [whitepaper.actor](https://raw.githubusercontent.com/apify/actor-whitepaper/refs/heads/master/README.md) - Complete Actor specification
-
-

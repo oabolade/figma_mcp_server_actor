@@ -9,36 +9,43 @@ The Figma MCP Server Actor establishes a long-running HTTP server that implement
 ## Key Features
 
 ### 🎨 **Real-time Design File Analysis**
+
 - Analyze Figma file structure and extract metadata
 - Extract design tokens, styles, and component information
 - Get hierarchical file structures with customizable depth
 
 ### 🧩 **Component Extraction & Management**
+
 - List all components and component sets in a file
 - Get detailed component information including properties and variants
 - Find component usage patterns across files
 
 ### 📦 **Automated Asset Export**
+
 - Export design assets in multiple formats (PNG, SVG, PDF, JPG)
 - Batch export multiple nodes or entire pages
 - Configurable scale factors for different display densities
 
 ### 💬 **Collaborative Comment Management**
+
 - Retrieve comments from Figma files
 - Create new comments at specific positions or nodes
 - Manage feedback and annotations programmatically
 
 ### 🔧 **Design Element Modification**
+
 - Get node information for modification planning
 - Support for design updates (via Plugin API integration)
 
 ### 📊 **Project & Team Management**
+
 - Access project metadata and file listings
 - Retrieve team projects and organizational information
 
 ## Architecture
 
 This Actor runs as a **long-running HTTP server** that:
+
 - Implements the Model Context Protocol (MCP) JSON-RPC 2.0 specification
 - Provides RESTful endpoints for health checks and MCP protocol communication
 - Maintains persistent connections for interactive AI assistant workflows
@@ -58,13 +65,15 @@ This Actor runs as a **long-running HTTP server** that:
 1. **Clone or download this Actor**
 
 2. **Install dependencies:**
+
    ```bash
    npm install
    ```
 
 3. **Configure your Figma access token:**
-   
+
    Create `storage/key_value_stores/default/INPUT.json`:
+
    ```json
    {
      "figmaAccessToken": "your-figma-personal-access-token",
@@ -75,11 +84,13 @@ This Actor runs as a **long-running HTTP server** that:
 ### Local Development
 
 1. **Run the Actor locally:**
+
    ```bash
    apify run
    ```
 
 2. **Verify the server is running:**
+
    ```bash
    curl http://localhost:8080/health
    ```
@@ -100,18 +111,19 @@ This Actor runs as a **long-running HTTP server** that:
 
 ### Input Parameters
 
-| Parameter | Type | Default | Description |
-|-----------|------|---------|-------------|
-| `figmaAccessToken` | string | - | Personal Access Token for Figma API authentication |
-| `port` | integer | 8080 | HTTP server port number |
-| `oauthClientId` | string | - | OAuth 2.0 client ID (optional, for future use) |
-| `oauthClientSecret` | string | - | OAuth 2.0 client secret (optional, for future use) |
-| `maxConcurrentRequests` | integer | 10 | Maximum concurrent requests (1-100) |
-| `enableCaching` | boolean | true | Enable response caching for Figma API requests |
+| Parameter               | Type    | Default | Description                                        |
+| ----------------------- | ------- | ------- | -------------------------------------------------- |
+| `figmaAccessToken`      | string  | -       | Personal Access Token for Figma API authentication |
+| `port`                  | integer | 8080    | HTTP server port number                            |
+| `oauthClientId`         | string  | -       | OAuth 2.0 client ID (optional, for future use)     |
+| `oauthClientSecret`     | string  | -       | OAuth 2.0 client secret (optional, for future use) |
+| `maxConcurrentRequests` | integer | 10      | Maximum concurrent requests (1-100)                |
+| `enableCaching`         | boolean | true    | Enable response caching for Figma API requests     |
 
 ### Environment Variables
 
 You can also set the Figma access token via environment variable:
+
 ```bash
 export FIGMA_ACCESS_TOKEN="your-token-here"
 ```
@@ -125,27 +137,32 @@ This Actor implements the full Model Context Protocol specification, including:
 The server provides 15+ MCP tools organized into categories:
 
 #### File Analysis Tools
+
 - `analyze_file` - Analyze a Figma file structure and extract metadata
 - `get_file_structure` - Get hierarchical file structure with customizable depth
 - `extract_styles` - Extract design tokens, styles, and design system information
 
 #### Component Extraction Tools
+
 - `list_components` - List all components available in a Figma file
 - `get_component_details` - Get detailed information about a specific component
 - `find_component_usage` - Find all instances where a component is used
 
 #### Asset Export Tools
+
 - `export_node` - Export a specific node as PNG, SVG, PDF, or JPG
 - `export_multiple_nodes` - Export multiple nodes in batch
 - `export_file_pages` - Export all pages from a Figma file
 
 #### Comment Management Tools
+
 - `get_comments` - Retrieve all comments from a Figma file
 - `create_comment` - Create a new comment at a position or node
 - `resolve_comment` - Mark a comment as resolved
 - `delete_comment` - Delete a comment
 
 #### Design Modification Tools
+
 - `update_node_properties` - Update properties of a design node
 - `get_node_for_modification` - Get detailed node information for modification planning
 
@@ -261,12 +278,15 @@ curl -X POST http://localhost:8080/mcp \
 ## API Endpoints
 
 ### Health Check
+
 ```
 GET /health
 ```
+
 Returns server status and health information.
 
 **Response:**
+
 ```json
 {
   "status": "ok",
@@ -278,15 +298,19 @@ Returns server status and health information.
 ```
 
 ### Root Endpoint
+
 ```
 GET /
 ```
+
 Returns service information and available endpoints.
 
 ### MCP Protocol Endpoint
+
 ```
 POST /mcp
 ```
+
 Main endpoint for MCP JSON-RPC 2.0 protocol communication.
 
 ## Deployment to Apify Platform
@@ -306,6 +330,7 @@ apify push
 ### 3. Configure Input
 
 After deployment, configure the Actor input in the Apify Console:
+
 - Set your `figmaAccessToken`
 - Adjust `port` if needed (default: 8080)
 - Configure other optional parameters
@@ -313,6 +338,7 @@ After deployment, configure the Actor input in the Apify Console:
 ### 4. Run the Actor
 
 The Actor will start as a long-running server accessible via:
+
 - **Container URL**: `https://<containerId>.runs.apify.net/`
 - **Health Check**: `https://<containerId>.runs.apify.net/health`
 - **MCP Endpoint**: `https://<containerId>.runs.apify.net/mcp`
@@ -340,18 +366,18 @@ The server implements the standard MCP protocol, making it compatible with any M
 
 ```javascript
 // Example MCP client usage
-const response = await fetch('https://your-actor-url/mcp', {
-  method: 'POST',
-  headers: { 'Content-Type': 'application/json' },
+const response = await fetch("https://your-actor-url/mcp", {
+  method: "POST",
+  headers: { "Content-Type": "application/json" },
   body: JSON.stringify({
-    jsonrpc: '2.0',
+    jsonrpc: "2.0",
     id: 1,
-    method: 'tools/call',
+    method: "tools/call",
     params: {
-      name: 'analyze_file',
-      arguments: { fileKey: 'your-file-key' }
-    }
-  })
+      name: "analyze_file",
+      arguments: { fileKey: "your-file-key" },
+    },
+  }),
 });
 ```
 
@@ -380,6 +406,7 @@ The server implements comprehensive error handling:
 ## Rate Limiting
 
 The Figma API has rate limits. The Actor includes:
+
 - Response caching (configurable, enabled by default)
 - Request queuing for concurrent requests
 - Configurable `maxConcurrentRequests` parameter
@@ -460,6 +487,7 @@ npm run lint:fix
 ## Contributing
 
 Contributions are welcome! Please ensure:
+
 - Code follows the existing style
 - Tests are added for new features
 - Documentation is updated
@@ -471,6 +499,7 @@ ISC
 ## Support
 
 For issues, questions, or contributions:
+
 - Check the [Apify Documentation](https://docs.apify.com)
 - Review [Figma API Documentation](https://www.figma.com/developers/api)
 - Open an issue in the repository
@@ -478,6 +507,7 @@ For issues, questions, or contributions:
 ## Changelog
 
 ### Version 0.0.1
+
 - Initial release
 - Full MCP protocol implementation
 - Figma API integration with PAT authentication
@@ -488,4 +518,3 @@ For issues, questions, or contributions:
 ---
 
 **Built with ❤️ using Apify Actors and Model Context Protocol**
-

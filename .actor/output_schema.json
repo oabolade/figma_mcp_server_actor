@@ -1,23 +1,21 @@
 {
-    "actorOutputSchemaVersion": 1,
-    "title": "Output schema of the Figma MCP Server",
-    "properties": {
-        "overview": {
-            "type": "string",
-            "title": "Overview",
-            "template": "{{links.apiDefaultDatasetUrl}}/items?view=overview"
-        },
-        "serverUrl": {
-            "type": "string",
-            "title": "MCP Server URL",
-            "template": "{{links.containerRunUrl}}"
-        },
-        "healthCheck": {
-            "type": "string",
-            "title": "Health Check",
-            "template": "{{links.containerRunUrl}}/health"
-        }
+  "actorOutputSchemaVersion": 1,
+  "title": "Output schema of the Figma MCP Server",
+  "properties": {
+    "overview": {
+      "type": "string",
+      "title": "Overview",
+      "template": "{{links.apiDefaultDatasetUrl}}/items?view=overview"
+    },
+    "serverUrl": {
+      "type": "string",
+      "title": "MCP Server URL",
+      "template": "{{links.containerRunUrl}}"
+    },
+    "healthCheck": {
+      "type": "string",
+      "title": "Health Check",
+      "template": "{{links.containerRunUrl}}/health"
     }
+  }
 }
-
-
