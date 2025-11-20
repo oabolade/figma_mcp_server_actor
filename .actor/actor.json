@@ -3,7 +3,11 @@
   "name": "figma-mcp-server",
   "title": "Figma MCP Server",
   "description": "Model Context Protocol server enabling AI assistants to interact with Figma designs and projects using natural language commands",
-  "version": "0.0",
+  "version": "1.0.0",
+  "usesStandbyMode": true,
+  "minMemoryMbytes": 512,
+  "maxMemoryMbytes": 4096,
+  "webServerMcpPath": "/mcp",
   "meta": {
     "templateId": "ai-generated-actor",
     "generatedBy": "composer"
