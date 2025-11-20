@@ -105,8 +105,9 @@ app.post("/mcp", createMCPHandler(mcpServer));
 
 // Error handling middleware
 app.use((err, req, res, _next) => {
-  // Log error via Actor (for production logging)
-  Actor.log.error("Express error:", err);
+  // Log error (Apify captures console output)
+  // eslint-disable-next-line no-console
+  console.error("Express error:", err);
   res.status(500).json({
     error: "Internal server error",
     message: err.message,
@@ -115,25 +116,33 @@ app.use((err, req, res, _next) => {
 
 // Start HTTP server
 const server = app.listen(webServerPort, "0.0.0.0", () => {
-  Actor.log.info(`Figma MCP Server listening on port ${webServerPort}`);
-  Actor.log.info(`Health check: http://localhost:${webServerPort}/health`);
-  Actor.log.info(`MCP endpoint: http://localhost:${webServerPort}/mcp`);
-  Actor.log.info("Server is running in long-running mode...");
+  // eslint-disable-next-line no-console
+  console.log(`Figma MCP Server listening on port ${webServerPort}`);
+  // eslint-disable-next-line no-console
+  console.log(`Health check: http://localhost:${webServerPort}/health`);
+  // eslint-disable-next-line no-console
+  console.log(`MCP endpoint: http://localhost:${webServerPort}/mcp`);
+  // eslint-disable-next-line no-console
+  console.log("Server is running in long-running mode...");
 });
 
 // Graceful shutdown
 process.on("SIGTERM", () => {
-  Actor.log.info("SIGTERM received, shutting down gracefully...");
+  // eslint-disable-next-line no-console
+  console.log("SIGTERM received, shutting down gracefully...");
   server.close(() => {
-    Actor.log.info("HTTP server closed");
+    // eslint-disable-next-line no-console
+    console.log("HTTP server closed");
     Actor.exit();
   });
 });
 
 process.on("SIGINT", () => {
-  Actor.log.info("SIGINT received, shutting down gracefully...");
+  // eslint-disable-next-line no-console
+  console.log("SIGINT received, shutting down gracefully...");
   server.close(() => {
-    Actor.log.info("HTTP server closed");
+    // eslint-disable-next-line no-console
+    console.log("HTTP server closed");
     Actor.exit();
   });
 });
