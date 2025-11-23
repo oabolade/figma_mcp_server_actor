@@ -502,7 +502,7 @@ For issues, questions, or contributions:
 
 - Check the [Apify Documentation](https://docs.apify.com)
 - Review [Figma API Documentation](https://www.figma.com/developers/api)
-- Open an issue in the repository [Github Repo](https://github.com/oabolade/figma_mcp_server_actor)
+- Open an issue in the repository
 
 ## Changelog
 

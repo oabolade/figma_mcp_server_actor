@@ -1,27 +1,13 @@
-# Environment files
-.env
-.env.*
-*.env
-.env.backup
-.env.backup*
-*.env.save
+# Dependencies
+node_modules/
 
-# Python
-__pycache__/
-*.py[cod]
-*$py.class
-*.so
-.Python
-venv/
-env/
-ENV/
-.venv
-
-# Database
-*.db
-*.sqlite
-*.sqlite3
+# Apify storage (contains sensitive tokens)
 storage/
+**/INPUT.json
+
+# Environment variables
+.env
+.env.local
 
 # IDE
 .vscode/
@@ -36,22 +22,10 @@ Thumbs.db
 
 # Logs
 *.log
-logs/
-
-# Coverage
-.coverage
-htmlcov/
-coverage.xml
-.pytest_cache/
-
-# Node
-node_modules/
 npm-debug.log*
 
-# Docker
-.dockerignore
+# Build outputs
+dist/
+build/
 
-# Temporary files
-*.tmp
-*.bak
-*.backup
+
