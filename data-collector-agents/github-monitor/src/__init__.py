@@ -1,0 +1,2 @@
+"""GitHub Monitor Agent package."""
+

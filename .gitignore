@@ -1,13 +1,27 @@
-# Dependencies
-node_modules/
-
-# Apify storage (contains sensitive tokens)
-storage/
-**/INPUT.json
-
-# Environment variables
+# Environment files
 .env
-.env.local
+.env.*
+*.env
+.env.backup
+.env.backup*
+*.env.save
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+venv/
+env/
+ENV/
+.venv
+
+# Database
+*.db
+*.sqlite
+*.sqlite3
+storage/
 
 # IDE
 .vscode/
@@ -22,10 +36,22 @@ Thumbs.db
 
 # Logs
 *.log
+logs/
+
+# Coverage
+.coverage
+htmlcov/
+coverage.xml
+.pytest_cache/
+
+# Node
+node_modules/
 npm-debug.log*
 
-# Build outputs
-dist/
-build/
+# Docker
+.dockerignore
 
-
+# Temporary files
+*.tmp
+*.bak
+*.backup

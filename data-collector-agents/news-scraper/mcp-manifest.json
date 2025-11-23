@@ -1,0 +1,32 @@
+{
+  "name": "news-scraper",
+  "version": "1.0.0",
+  "description": "Scrapes startup news from TechCrunch, HackerNews, and ProductHunt",
+  "type": "docker-mcp-agent",
+  "endpoints": [
+    {
+      "path": "/techcrunch",
+      "method": "GET",
+      "description": "Get latest TechCrunch articles"
+    },
+    {
+      "path": "/hackernews",
+      "method": "GET",
+      "description": "Get latest HackerNews posts"
+    },
+    {
+      "path": "/producthunt",
+      "method": "GET",
+      "description": "Get latest ProductHunt launches"
+    },
+    {
+      "path": "/all",
+      "method": "GET",
+      "description": "Get all sources aggregated",
+      "queryParams": ["limit", "hours"]
+    }
+  ],
+  "healthCheck": "/health",
+  "port": 3001
+}
+

@@ -1,0 +1,34 @@
+{
+  "name": "github-monitor",
+  "version": "1.0.0",
+  "description": "Monitors GitHub repositories for trending projects and technical signals",
+  "type": "docker-mcp-agent",
+  "endpoints": [
+    {
+      "path": "/trending",
+      "method": "GET",
+      "description": "Get trending repositories",
+      "queryParams": ["language", "since", "limit"]
+    },
+    {
+      "path": "/signals",
+      "method": "GET",
+      "description": "Extract technical signals from GitHub activity",
+      "queryParams": ["keywords", "days", "min_stars"]
+    },
+    {
+      "path": "/search",
+      "method": "GET",
+      "description": "Search repositories by keywords",
+      "queryParams": ["keywords", "min_stars", "days"]
+    },
+    {
+      "path": "/repositories/{owner}/{repo}",
+      "method": "GET",
+      "description": "Get specific repository details"
+    }
+  ],
+  "healthCheck": "/health",
+  "port": 3003
+}
+

@@ -1,0 +1,35 @@
+{
+  "name": "startup-api",
+  "version": "1.0.0",
+  "description": "Aggregates startup funding, launches, and events from multiple sources",
+  "type": "docker-mcp-agent",
+  "endpoints": [
+    {
+      "path": "/funding",
+      "method": "GET",
+      "description": "Get recent funding rounds",
+      "queryParams": ["keyword", "days", "min_amount"]
+    },
+    {
+      "path": "/launches",
+      "method": "GET",
+      "description": "Get recent product/startup launches",
+      "queryParams": ["keyword", "days", "category"]
+    },
+    {
+      "path": "/events",
+      "method": "GET",
+      "description": "Get upcoming startup events",
+      "queryParams": ["keyword", "days"]
+    },
+    {
+      "path": "/all",
+      "method": "GET",
+      "description": "Get all signals aggregated",
+      "queryParams": ["days"]
+    }
+  ],
+  "healthCheck": "/health",
+  "port": 3002
+}
+

@@ -1,0 +1,72 @@
+version: '3.8'
+
+services:
+  news-scraper:
+    build:
+      context: ./news-scraper
+      dockerfile: Dockerfile
+    container_name: news-scraper
+    ports:
+      - "3001:3001"
+    environment:
+      - PORT=3001
+      - NODE_ENV=production
+      - CACHE_TTL=900
+      - TIMEOUT=30000
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:3001/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+
+  startup-api:
+    build:
+      context: ./startup-api
+      dockerfile: Dockerfile
+    container_name: startup-api
+    ports:
+      - "3002:3002"
+    environment:
+      - PORT=3002
+      - NODE_ENV=production
+      - CACHE_TTL=900
+      - TIMEOUT=30000
+      # Optional API keys
+      - CRUNCHBASE_API_KEY=${CRUNCHBASE_API_KEY:-}
+      - ANGEL_LIST_API_KEY=${ANGEL_LIST_API_KEY:-}
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:3002/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+
+  github-monitor:
+    build:
+      context: ./github-monitor
+      dockerfile: Dockerfile
+    container_name: github-monitor
+    ports:
+      - "3003:3003"
+    environment:
+      - PORT=3003
+      - NODE_ENV=production
+      - CACHE_TTL=900
+      - TIMEOUT=30000
+      # Optional GitHub token for higher rate limits
+      - GITHUB_TOKEN=${GITHUB_TOKEN:-}
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:3003/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+
+networks:
+  default:
+    name: data-collector-agents
+
