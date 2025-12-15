@@ -258,9 +258,13 @@ Claude Desktop supports MCP servers via HTTP transport. Follow these steps:
    ```json
    {
      "mcpServers": {
-       "figma": {
-         "url": "https://<CONTAINER-ID>.runs.apify.net/mcp",
-         "transport": "http"
+       "figma-standby": {
+         "command": "npx",
+         "args": [
+        "-y",
+        "mcp-remote",
+        "https://x3i5l99zpsyz.runs.apify.net/mcp/sse?token=your apify api token"
+      ]
        }
      }
    }
