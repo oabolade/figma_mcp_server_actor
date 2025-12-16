@@ -1,13 +1,42 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>Figma MCP Server - server.json</title>
-    <meta http-equiv="refresh" content="0; url=./server.json">
-    <link rel="canonical" href="./server.json">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Figma MCP Server</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 20px;
+            line-height: 1.6;
+        }
+        h1 { color: #333; }
+        .json-link {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 10px 20px;
+            background: #0366d6;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+        }
+        .json-link:hover {
+            background: #0256c2;
+        }
+    </style>
 </head>
 <body>
-    <p>Redirecting to <a href="./server.json">server.json</a>...</p>
-    <script>window.location.href = "./server.json";</script>
+    <h1>Figma MCP Server</h1>
+    <p>This is the GitHub Pages site for the Figma MCP Server.</p>
+    <p>The server.json file is available at:</p>
+    <a href="./server.json" class="json-link">View server.json</a>
+    <script>
+        // Auto-redirect to server.json
+        setTimeout(function() {
+            window.location.href = './server.json';
+        }, 2000);
+    </script>
 </body>
 </html>
