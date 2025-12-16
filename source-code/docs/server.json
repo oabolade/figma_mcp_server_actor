@@ -4,7 +4,8 @@
   "title": "Figma MCP Server",
   "description": "MCP server enabling AI assistants to interact with Figma designs via natural language commands",
   "repository": {
-    "url": "https://github.com/oabolade/figma_mcp_server_actor"
+    "url": "https://github.com/oabolade/figma_mcp_server_actor",
+    "source": "github"
   },
   "version": "2.1.0",
   "license": "ISC",
