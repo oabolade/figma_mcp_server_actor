@@ -1,0 +1,4 @@
+# Minimal Jekyll config to disable processing
+# This file ensures Jekyll doesn't try to process files
+safe: true
+plugins: []
