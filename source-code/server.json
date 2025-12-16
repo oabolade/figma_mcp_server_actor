@@ -1,0 +1,30 @@
+{
+  "$schema": "https://static.modelcontextprotocol.io/schemas/2025-10-17/server.schema.json",
+  "name": "io.github.oabolade/figma_mcp_server_actor",
+  "title": "Figma MCP Server",
+  "description": "A Model Context Protocol (MCP) server Actor for Apify that enables AI assistants and applications to interact with Figma designs and projects using natural language commands. This MCP server Actor allows you to: 1. View Figma designs and projects 2. Edit Figma designs and projects 3. Create new Figma designs and projects 4. Delete Figma designs and projects 5. Share Figma designs and projects 6. Collaborate with others on Figma designs and projects",
+  "repository": {
+    "url": "https://github.com/oabolade/figma_mcp_server_actor"
+  },
+  "version": "2.1.0",
+  "license": "ISC",
+  "packages": [
+    {
+      "registryType": "npm",
+      "identifier": "@oabolade-pegasus/figma-mcp-server",
+      "version": "2.1.0",
+      "transport": {
+        "type": "stdio"
+      },
+      "environmentVariables": [
+        {
+          "name": "FIGMA_ACCESS_TOKEN",
+          "description": "Figma Personal Access Token for API authentication. Get yours at https://www.figma.com/developers/api#access-tokens",
+          "isRequired": true,
+          "format": "string",
+          "isSecret": true
+        }
+      ]
+    }
+  ]
+}
