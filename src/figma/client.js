@@ -38,6 +38,10 @@ class FigmaClient {
       this.cache.delete(cacheKey);
     }
 
+    if (typeof this.auth.ensureAccessToken === "function") {
+      await this.auth.ensureAccessToken();
+    }
+
     const headers = {
       ...this.auth.getAuthHeaders(),
       "Content-Type": "application/json",

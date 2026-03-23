@@ -9,6 +9,10 @@ storage/
 .env
 .env.local
 
+# Local MCP registry / tokens (never commit)
+.mcpregistry_*
+**/.mcpregistry_*
+
 # IDE
 .vscode/
 .idea/

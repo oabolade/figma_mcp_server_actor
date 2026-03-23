@@ -21,17 +21,31 @@
     "oauthClientId": {
       "title": "OAuth 2.0 Client ID",
       "type": "string",
-      "description": "OAuth 2.0 client ID for multi-user authentication (optional, for future use)",
+      "description": "Figma OAuth app Client ID. Use with Client Secret when omitting PAT (team / shared files). Register app at https://www.figma.com/developers/apps",
       "editor": "textfield",
       "nullable": true
     },
     "oauthClientSecret": {
       "title": "OAuth 2.0 Client Secret",
       "type": "string",
-      "description": "OAuth 2.0 client secret for multi-user authentication (optional, for future use)",
+      "description": "Figma OAuth app Client Secret (paired with Client ID).",
       "editor": "textfield",
       "nullable": true,
       "isSecret": true
+    },
+    "oauthRedirectUri": {
+      "title": "OAuth redirect URI",
+      "type": "string",
+      "description": "Exact callback URL registered in Figma, e.g. https://YOUR_RUN.runs.apify.net/oauth/callback — required for OAuth flow when not using PAT.",
+      "editor": "textfield",
+      "nullable": true
+    },
+    "oauthScopes": {
+      "title": "OAuth scopes",
+      "type": "string",
+      "description": "Comma-separated Figma scopes (must match your OAuth app). Default covers read/write file content and comments.",
+      "editor": "textfield",
+      "nullable": true
     },
     "maxConcurrentRequests": {
       "title": "Max Concurrent Requests",
